@@ -21,8 +21,5 @@ We welcome contributions from all Lamar High School CSHS members! If you have id
 ## Team
 TBD
 
-## Contact
-For repository queries, email milamgarrett@gmail.com
-
 ---
 Made with ❤️ by Lamar High School CSHS

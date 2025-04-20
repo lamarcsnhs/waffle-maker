@@ -103,7 +103,7 @@ def checkMail():
                 if isinstance(response, tuple):
                     msg = email.message_from_bytes(response[1])
                     print(msg['From'])
-                    return get_contents(msg), msg['From']
+                    return get_contents(msg)
             rem = messages
 
         print("Looped")

@@ -5,8 +5,8 @@ import time
 
 if __name__=='__main__':
     try:
-        # while True:
-            # print(g.checkMail())
+        while True:
+            print(g.checkMail())
 
         me.spinMotor("left",37,1)
         time.sleep(1)
@@ -16,6 +16,7 @@ if __name__=='__main__':
     finally:
         me.pwm.stop()
         GPIO.cleanup()
+
 
 
         
