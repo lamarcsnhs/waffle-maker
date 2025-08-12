@@ -1,3 +1,5 @@
+#switch RPi.GPIO to adafruit's libraries
+
 import RPi.GPIO as GPIO
 import time
 
