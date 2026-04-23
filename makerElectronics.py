@@ -35,10 +35,12 @@ def spinMotor(direction, speed, duration):
     if direction == "left":
         GPIO.output(motorIN1, GPIO.HIGH)
         print('spinning left')
-        time.sleep(1)
+        time.sleep(duration)
         GPIO.output(motorIN2, GPIO.LOW)
     elif direction == "right":
         GPIO.output(motorIN1, GPIO.LOW)
+        print('spinning right')
+        time.sleep(duration)
         GPIO.output(motorIN2, GPIO.HIGH)
     
     pwm.ChangeDutyCycle(speed)
@@ -76,9 +78,16 @@ def pump(duration):
     GPIO.output(pumpPin, GPIO.LOW)
 
 def run():
-    moveLinearActuator("down", 15)
+    moveLinearActuator("down", 14.5)
     time.sleep(2)
-    moveLinearActuator("up", 15)
+    moveLinearActuator("up", 14.5)
     time.sleep(2)
+<<<<<<< HEAD
     spinMotor("left",37,.31)
     
+=======
+    spinMotor("left", 37, .34)
+    time.sleep(1)
+    spinMotor("right", 37, 1.25)
+    
+>>>>>>> 71a9240 (fixed motors)
