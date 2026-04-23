@@ -36,17 +36,19 @@ def orderThread():
 
 if __name__=='__main__':
     try:
-        gettingOrders = threading.Thread(target=orderThread)
-        gettingOrders.start()
+    #     gettingOrders = threading.Thread(target=orderThread)
+    #     gettingOrders.start()
 
-        while True:
-            time.sleep(5)
+    #     while True:
+    #         time.sleep(5)
 
-            print(g.checkMail())
+    #         print(g.checkMail())
 
-        # me.spinMotor("left",37,1)
+        # me.spinMotor("left",37,.31)
         # time.sleep(1)
         # me.spinMotor("right",31,1)
+        # me.moveLinearActuator("up", 15)
+        me.run()
     except KeyboardInterrupt:
         pass
     finally:

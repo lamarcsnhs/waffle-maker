@@ -6,9 +6,12 @@ import time
 #initialize GPIO
 #Based on GPIO #, not pin #
 #Motor Pins
-motorIN1 = 16
+motorIN1 = 19
 motorIN2 = 12
 motorPWM = 25 #Controls Speed
+#linear actuator pins
+linearIN1 = 17
+linearIN2 = 18
 #Heat Pins
 heatPin = 23
 #Pump Pins
@@ -19,6 +22,8 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(motorIN1, GPIO.OUT)
 GPIO.setup(motorIN2, GPIO.OUT)
 GPIO.setup(motorPWM, GPIO.OUT)
+GPIO.setup(linearIN1, GPIO.OUT)
+GPIO.setup(linearIN2, GPIO.OUT)
 GPIO.setup(heatPin, GPIO.OUT)
 GPIO.setup(pumpPin, GPIO.OUT)
 
@@ -29,6 +34,8 @@ pwm.start(0)
 def spinMotor(direction, speed, duration):
     if direction == "left":
         GPIO.output(motorIN1, GPIO.HIGH)
+        print('spinning left')
+        time.sleep(1)
         GPIO.output(motorIN2, GPIO.LOW)
     elif direction == "right":
         GPIO.output(motorIN1, GPIO.LOW)
@@ -41,6 +48,23 @@ def spinMotor(direction, speed, duration):
     GPIO.output(motorIN1, GPIO.LOW)
     GPIO.output(motorIN2, GPIO.LOW)
 
+def moveLinearActuator(direction, duration):
+    if direction == "down":
+        GPIO.output(linearIN1, GPIO.HIGH)
+        print('going down')
+        time.sleep(duration)
+        GPIO.output(linearIN1, GPIO.LOW)
+        print('went down for', duration, 'sec' )
+    elif direction == "up":
+        GPIO.output(linearIN2, GPIO.HIGH)
+        print('going up')
+        time.sleep(duration+1)
+        GPIO.output(linearIN2, GPIO.LOW)
+        print('went up for', duration+1, 'sec' )
+    GPIO.output(linearIN1, GPIO.LOW)
+    GPIO.output(linearIN2, GPIO.LOW)
+
+
 def heat(duration):
     GPIO.output(heatPin, GPIO.HIGH)
     time.sleep(duration)
@@ -50,3 +74,11 @@ def pump(duration):
     GPIO.output(pumpPin, GPIO.HIGH)
     time.sleep(duration)
     GPIO.output(pumpPin, GPIO.LOW)
+
+def run():
+    moveLinearActuator("down", 15)
+    time.sleep(2)
+    moveLinearActuator("up", 15)
+    time.sleep(2)
+    spinMotor("left",37,.31)
+    
