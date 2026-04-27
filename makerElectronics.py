@@ -13,7 +13,7 @@ motorPWM = 25 #Controls Speed
 linearIN1 = 17
 linearIN2 = 18
 #Heat Pins
-heatPin = 23
+heatPin = 21
 #Pump Pins
 pumpPin = 4
 
@@ -78,15 +78,20 @@ def pump(duration):
     GPIO.output(pumpPin, GPIO.LOW)
 
 def run():
+    # close lid
     moveLinearActuator("down", 14.5)
     time.sleep(2)
+
+    # heat
+    heat(45)
+    time.sleep(60)
+
+    # open lid
     moveLinearActuator("up", 14.5)
     time.sleep(2)
-<<<<<<< HEAD
-    spinMotor("left",37,.31)
-    
-=======
-    spinMotor("left", 37, .34)
+
+    # spin motor
+    spinMotor("left", 37, .36)
     time.sleep(1)
     spinMotor("right", 37, 1.25)
     
