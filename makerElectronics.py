@@ -77,14 +77,19 @@ def pump(duration):
     time.sleep(duration)
     GPIO.output(pumpPin, GPIO.LOW)
 
+def preheat(duration):
+    GPIO.output(heatPin, GPIO.HIGH)
+    time.sleep(duration)
+    GPIO.output(heatPin, GPIO.LOW)
+
 def run():
     # close lid
     moveLinearActuator("down", 14.5)
     time.sleep(2)
 
     # heat
-    heat(45)
-    time.sleep(60)
+    heat(230)
+    time.sleep(6)
 
     # open lid
     moveLinearActuator("up", 14.5)
@@ -92,7 +97,16 @@ def run():
 
     # spin motor
     spinMotor("left", 37, .36)
-    time.sleep(1)
+    time.sleep(20)
+
+    # wip: wiggle motor
+# stay longer flat for it to cool before we flip
+# let it stay flipped for longer to let gravity work
+# fix spinning it was not doing a 180
+# jiffy was pretty
+# preheat
+
+    # spin motor again
     spinMotor("right", 37, 1.25)
     
->>>>>>> 71a9240 (fixed motors)
+run()
