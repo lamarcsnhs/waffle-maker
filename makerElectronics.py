@@ -34,12 +34,12 @@ pwm.start(0)
 def spinMotor(direction, speed, duration):
     if direction == "left":
         GPIO.output(motorIN1, GPIO.HIGH)
-        print('spinning left')
+        # print('spinning left')
         time.sleep(duration)
         GPIO.output(motorIN2, GPIO.LOW)
     elif direction == "right":
         GPIO.output(motorIN1, GPIO.LOW)
-        print('spinning right')
+        # print('spinning right')
         time.sleep(duration)
         GPIO.output(motorIN2, GPIO.HIGH)
     
@@ -78,9 +78,23 @@ def pump(duration):
     GPIO.output(pumpPin, GPIO.LOW)
 
 def preheat(duration):
-    GPIO.output(heatPin, GPIO.HIGH)
-    time.sleep(duration)
-    GPIO.output(heatPin, GPIO.LOW)
+    # close lid
+    moveLinearActuator("down", 14.5)
+    time.sleep(2)
+
+    # heat
+    heat(60)
+    time.sleep(2)
+
+    # open lid
+    moveLinearActuator("up", 14.5)
+    time.sleep(2)
+
+def wiggle(duration):
+    for x in range(int (duration)):
+        spinMotor("left", 37, .035)
+        spinMotor("right", 37, .035)
+    
 
 def run():
     # close lid
@@ -93,20 +107,23 @@ def run():
 
     # open lid
     moveLinearActuator("up", 14.5)
-    time.sleep(2)
-
-    # spin motor
-    spinMotor("left", 37, .36)
     time.sleep(20)
 
-    # wip: wiggle motor
-# stay longer flat for it to cool before we flip
-# let it stay flipped for longer to let gravity work
-# fix spinning it was not doing a 180
-# jiffy was pretty
-# preheat
+    # spin motor
+    spinMotor("left", 37, .37)
+    time.sleep(2)
+
+    # wiggle motor
+    wiggle(30)
+    time.sleep(20)
+    
+
+    # fix spinning it was not doing a 180
+    # jiffy was pretty
+    
 
     # spin motor again
-    spinMotor("right", 37, 1.25)
+    spinMotor("right", 37, 1.55)
     
-run()
+#run()
+preheat()
