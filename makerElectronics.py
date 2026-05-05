@@ -108,8 +108,8 @@ def run():
     moveLinearActuator("down", 14.5)
     time.sleep(2)
 
-    # heat (230)
-    heat(300)
+    # heat (240)
+    heat(240)
     time.sleep(6)
 
     # open lid
@@ -134,4 +134,4 @@ def run():
     
 run()
 # preheat(60)
-#wiggle(50, .02)
+# wiggle(50, .02)
