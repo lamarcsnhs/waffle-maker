@@ -120,7 +120,7 @@ def run():
     spinMotor("left", 37, .37)
     time.sleep(2)
 
-    # wiggle motor
+    # wiggle wiggle wiggle
     wiggle(70, .02)
     time.sleep(20)    
 
