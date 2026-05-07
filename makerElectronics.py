@@ -109,7 +109,7 @@ def run():
     time.sleep(2)
 
     # heat (240)
-    heat(240)
+    heat(260)
     time.sleep(6)
 
     # open lid
@@ -132,6 +132,7 @@ def run():
 
     # wiggle before to even out  batter ????
     
-run()
+# run()
 # preheat(60)
 # wiggle(50, .02)
+GPIO.output(heatPin, GPIO.LOW)
