@@ -128,3 +128,7 @@ def test_all_servos():
 # HOLD BASE DOWN or it may go flying
 
 stand_straight()
+# relax()
+# test_all_servos()
+# close_gripper()
+
