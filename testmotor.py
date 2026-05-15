@@ -10,7 +10,16 @@ GPIO.setup(motorIN2,GPIO.OUT)
 
 GPIO.setwarnings(False)
 
-GPIO.output(motorIN1,GPIO.HIGH)
-time.sleep(6)
-GPIO.output(motorIN1,GPIO.LOW)
-time.sleep(6)
+def switch(direction, duration):
+    if(direction == "right"):
+        GPIO.output(motorIN1,GPIO.HIGH)
+        time.sleep(duration)
+        GPIO.output(motorIN1,GPIO.LOW)
+        time.sleep(1)
+    elif(direction == "left"):
+        GPIO.output(motorIN2,GPIO.HIGH)
+        time.sleep(duration)
+        GPIO.output(motorIN2,GPIO.LOW)
+        time.sleep(1)
+
+switch("right", 6)

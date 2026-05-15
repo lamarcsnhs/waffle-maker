@@ -111,8 +111,8 @@ def test_all_servos():
     """move all the servos back and forth for testing"""
     rotate_base_left()
     rotate_base_right()
-    shoulder_up() 
-    shoulder_down()
+    shoulder_down() 
+    shoulder_up()
     elbow_up()
     elbow_down()
     wrist_up()
@@ -127,8 +127,8 @@ def test_all_servos():
 
 # HOLD BASE DOWN or it may go flying
 
-stand_straight()
+# stand_straight()
 # relax()
-# test_all_servos()
+test_all_servos()
 # close_gripper()
 
