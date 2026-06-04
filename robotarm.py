@@ -89,7 +89,7 @@ def close_gripper(speed=MOVE_TIME):
     print("closed gripper")
 
 def open_gripper(speed=MOVE_TIME):
-    move([[1, 0]], speed)
+    move([[1, 500]], speed)
     print("opened gripper")
 
 
@@ -106,6 +106,13 @@ def read_all_positions():
         sleep(0.1)
         print(f"Servo {i}: {arm.getPosition(i)}")
 
+def print_all_positions():
+    positions = []
+    for i in range(1, 7):
+        sleep(0.1)
+        positions.append(arm.getPosition(i))
+
+    print(f"move([[1, {positions[0]}], [2, {positions[1]}], [3, {positions[2]}], [4, {positions[3]}], [5, {positions[4]}], [6, {positions[5]}]], speed=MOVE_TIME)")
 
 def test_all_servos():
     """move all the servos back and forth for testing"""
@@ -122,13 +129,30 @@ def test_all_servos():
     close_gripper()
     open_gripper()
 
+def move_to_pump():
+    # hold position
+    move([[1, 649], [2, 502], [3, 244], [4, 669], [5, 133], [6, 679]], speed=MOVE_TIME)
+    sleep(1)
 
+    # mid position
+    move([[1, 657], [2, 504], [3, 239], [4, 495], [5, 543], [6, 716]], speed=MOVE_TIME)
+    sleep(0.1)
+    
+    # pump position
+    move([[1, 660], [2, 504], [3, 239], [4, 495], [5, 543], [6, 1000]], speed=MOVE_TIME)
+    sleep(0.1)
 
+def move_to_hold():
+    # pump position
+    move([[1, 660], [2, 504], [3, 239], [4, 495], [5, 543], [6, 1000]], speed=MOVE_TIME)
+    sleep(1)
 
-# HOLD BASE DOWN or it may go flying
+    # mid position
+    move([[1, 657], [2, 504], [3, 239], [4, 495], [5, 543], [6, 716]], speed=MOVE_TIME)
+    sleep(0.1)
+    
+    # hold position
+    move([[1, 649], [2, 502], [3, 244], [4, 669], [5, 133], [6, 679]], speed=MOVE_TIME)
+    sleep(0.1)
 
-# stand_straight()
-# relax()
-test_all_servos()
-# close_gripper()
-
+move_to_hold()

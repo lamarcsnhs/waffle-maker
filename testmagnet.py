@@ -3,7 +3,6 @@ import time
 
 HALL_PIN = 4
 
-
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(HALL_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -14,7 +13,7 @@ try:
             print("Magnet ON")
         else:
             print("Magnet OFF")
-        time.sleep(0.1)
+        time.sleep(0.3)
 
 except KeyboardInterrupt:
     print("Exiting.")

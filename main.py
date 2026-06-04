@@ -4,6 +4,7 @@ import makerElectronics as me
 import time
 import threading
 from wafflesList import waffle_list
+from orderParser import parse_order
 
 # coffee maker code makes 0 sense
 
@@ -23,9 +24,10 @@ Process:
 
 orders = []
 
+
 def CheckForOrder():
-    aOrder = g.checkMail()
-    # thisOrder
+       aOrder = g.checkMail()
+       return parse_order(aOrder)
 
 def orderThread():
     while True:
@@ -36,19 +38,21 @@ def orderThread():
 
 if __name__=='__main__':
     try:
-    #     gettingOrders = threading.Thread(target=orderThread)
-    #     gettingOrders.start()
+        gettingOrders = threading.Thread(target=orderThread)
+        gettingOrders.start()
 
-    #     while True:
-    #         time.sleep(5)
+        while True:
+            time.sleep(5)
 
-    #         print(g.checkMail())
+            print(g.checkMail())
+
+
 
         # me.spinMotor("left",37,.31)
         # time.sleep(1)
         # me.spinMotor("right",31,1)
         # me.moveLinearActuator("up", 15)
-        me.run()
+        # me.run()
     except KeyboardInterrupt:
         pass
     finally:

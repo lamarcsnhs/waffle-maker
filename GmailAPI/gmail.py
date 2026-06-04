@@ -92,23 +92,24 @@ def checkMail():
     rem = messages
 
     while True:
-        #imap = imaplib.IMAP4_SSL(imap_server)
-        #imap.login(username, password)
         status, messages = imap.select("INBOX")
         messages = int(messages[0])
 
         if messages != rem:
-            res, msg = imap.fetch(str(messages), "(RFC822)") 
+            res, msg = imap.fetch(str(messages), "(RFC822)")
             for response in msg:
                 if isinstance(response, tuple):
                     msg = email.message_from_bytes(response[1])
                     print(msg['From'])
-                    return get_contents(msg)
+                    contents = get_contents(msg)
+                    if "waffle" in contents.lower():
+                        return contents
+                    else:
+                        print("no order found")
             rem = messages
 
         print("Looped")
         time.sleep(5)
 
-    # Close the connection and logout (you can move this to outside the loop)
     imap.close()
     imap.logout()
