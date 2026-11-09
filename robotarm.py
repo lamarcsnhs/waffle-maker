@@ -1,7 +1,7 @@
 import xarm
 from time import sleep
 
-arm = xarm.Controller('USB')
+arm = xarm.Controller('USB', debug=True)
 sleep(0.5)
 MOVE_TIME = 1500  # changing this doesn't work :(
 
@@ -155,4 +155,6 @@ def move_to_hold():
     move([[1, 649], [2, 502], [3, 244], [4, 669], [5, 133], [6, 679]], speed=MOVE_TIME)
     sleep(0.1)
 
-move_to_hold()
+# move_to_hold()
+read_all_positions()
+test_all_servos()

@@ -52,7 +52,7 @@ if __name__=='__main__':
         # time.sleep(1)
         # me.spinMotor("right",31,1)
         # me.moveLinearActuator("up", 15)
-        # me.run()
+        me.run()
     except KeyboardInterrupt:
         pass
     finally:

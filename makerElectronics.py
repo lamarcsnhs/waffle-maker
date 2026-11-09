@@ -110,23 +110,24 @@ def wiggle(loops, duration):
 def run():
     # robot.move([[1, 649], [2, 502], [3, 244], [4, 669], [5, 133], [6, 679]], speed=robot.MOVE_TIME)
 
-
-    # dispenser.dispense(30)
-    # sleep(5)
+    print("moved")
+    dispenser.dispense(30)
+    print("dispensing")
+    sleep(5)
     
 
     # mixer.mix(30)
-    # sleep(5)
+    sleep(5)
 
     # robot.move_to_pump()
-    # sleep(30)
+    sleep(30)
 
     # close lid
     moveLinearActuator("down", 14.5)
     sleep(2)
 
     # heat (240)
-    heat(250)
+    # heat(250)
     sleep(6)
 
     # open lid
@@ -146,7 +147,7 @@ def run():
 
     
 # preheat(60)
-# run()
-wiggle(30,0.2)
-
+run()
+# wiggle(30,0.2)
+# moveLinearActuator()
 # wiggle(50, .022)
